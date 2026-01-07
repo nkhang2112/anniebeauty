@@ -39,6 +39,38 @@ function typeWriter(element, text, speed = 100) {
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Auto-flip cards on mobile after viewing
+    function setupAutoFlip() {
+        if (window.innerWidth <= 768) {
+            const flipCards = document.querySelectorAll('.flip-card');
+            
+            const autoFlipObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Auto flip after 3 seconds of being in view
+                        setTimeout(() => {
+                            if (entry.target.classList.contains('animate-in')) {
+                                entry.target.classList.add('auto-flipped');
+                                
+                                // Flip back after 3 seconds
+                                setTimeout(() => {
+                                    entry.target.classList.remove('auto-flipped');
+                                }, 3000);
+                            }
+                        }, 3000);
+                    }
+                });
+            }, {
+                threshold: 0.8,
+                rootMargin: '0px'
+            });
+            
+            flipCards.forEach(card => {
+                autoFlipObserver.observe(card);
+            });
+        }
+    }
+    
     // Start typing effect after a short delay
     setTimeout(() => {
         const subtitle = document.querySelector('.hero-subtitle');
@@ -68,6 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.flip-card').forEach(card => {
         cardObserver.observe(card);
     });
+    
+    // Setup auto-flip for mobile
+    setupAutoFlip();
+    
+    // Re-setup on window resize
+    window.addEventListener('resize', setupAutoFlip);
     
     // Fade-in animation for sections on scroll
     const observerOptions = {
