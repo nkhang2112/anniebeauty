@@ -39,6 +39,20 @@ function typeWriter(element, text, speed = 100) {
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Add touch support for flip cards on mobile
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.classList.toggle('flipped');
+        });
+        
+        // Also handle click for desktop
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
+    
     // Start typing effect after a short delay
     setTimeout(() => {
         const subtitle = document.querySelector('.hero-subtitle');
