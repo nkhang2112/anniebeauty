@@ -42,6 +42,16 @@ body {
     color: #d4af37;
 }
 
+.logo a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: #f5c842;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
