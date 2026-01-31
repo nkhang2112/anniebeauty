@@ -16,9 +16,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+        navbar.style.background = 'linear-gradient(135deg, rgba(255, 192, 203, 0.98) 0%, rgba(230, 230, 250, 0.98) 100%)';
     } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+        navbar.style.background = 'linear-gradient(135deg, rgba(255, 192, 203, 0.95) 0%, rgba(230, 230, 250, 0.95) 100%)';
     }
 });
 
